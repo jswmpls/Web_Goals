@@ -1,33 +1,56 @@
 // Начальные значения для тестирования
 function initDef() {
-  goals = [
-    {
-      id: 0,
-      name: "10.000 шагов в день",
-      description: "Я не придумала",
-      category: "health",
-      priority: "high",
-      deadline: "30.12.2025",
-    },
-    {
-      id: 1,
-      name: "Получить повышение до препода",
-      description: "Я не придумала",
-      category: "career",
-      priority: "high",
-      deadline: "30.12.2025",
-    },
-    {
-      id: 2,
-      name: "Найти работу во Frontend",
-      description: "Я не придумала",
-      category: "career",
-      priority: "high",
-      deadline: "30.12.2025",
-    },
-  ];
+  const fromLocal = loadFormLocalStorage();
+  if (fromLocal && fromLocal.length > 0) {
+    goals = fromLocal;
+    nextId = Math.max(...goals.map((goal) => goal.id)) + 1;
+  } else {
+    goals = [
+      {
+        id: 0,
+        name: "10.000 шагов в день",
+        description: "Я не придумала",
+        category: "health",
+        priority: "high",
+        deadline: "30.12.2025",
+      },
+      {
+        id: 1,
+        name: "Получить повышение до препода",
+        description: "Я не придумала",
+        category: "career",
+        priority: "medium",
+        deadline: "30.12.2025",
+      },
+      {
+        id: 2,
+        name: "Найти работу во Frontend",
+        description: "Я не придумала",
+        category: "career",
+        priority: "medium",
+        deadline: "30.12.2025",
+      },
+    ];
+    nextId = 3;
+    saveLocalStorage();
+  }
 }
-let nextId = 3;
+
+// Сохранение
+function saveLocalStorage() {
+  localStorage.setItem("goals", JSON.stringify(goals));
+}
+
+// Загрузка
+function loadFormLocalStorage() {
+  const localGoals = localStorage.getItem("goals");
+  if (localGoals) {
+    return JSON.parse(localGoals);
+  } else {
+    return null;
+  }
+}
+
 let currentGoalId = null;
 
 // Работа с Goal Card
@@ -36,19 +59,28 @@ const descGoal = document.querySelector(".descr-goal");
 const categoryGoal = document.querySelector("#category");
 const priorityGoal = document.querySelector("#priority");
 const deadlineGoal = document.querySelector("#deadline");
-const btnAddGoal = document.querySelector(".add-goal");
+const btnAddGoal = document
+  .querySelector(".add-goal")
+  .addEventListener("click", AddGoal);
 
 // Модальное окно
 const modalWindow = document.querySelector(".modal");
-const closeBtn = document.querySelector(".close-btn");
+const closeBtn = document
+  .querySelector(".close-btn")
+  .addEventListener("click", openModalWindow);
 const modalTitle = document.querySelector(".modal-title");
 const modalDescr = document.querySelector(".modal-descr");
 const modalCategory = document.querySelector(".p-modal__category");
 const modalPriority = document.querySelector(".p-modal__priority");
 const modalDeadline = document.querySelector(".p-modal__deadline");
 
-btnAddGoal.addEventListener("click", AddGoal);
+// Работа со списками по категориям
+const listGoalsHealth = document.querySelector(".block-health");
+const listGoalsCareer = document.querySelector(".block-career");
+const listGoalsEducation = document.querySelector(".block-education");
+const listGoalsPersonal = document.querySelector(".block-personal");
 
+// Добавление новой цели
 function AddGoal() {
   console.log(nameGoal.value);
 
@@ -78,13 +110,9 @@ function AddGoal() {
     priorityGoal.value = "high";
     deadlineGoal.value = "";
   }
-}
 
-// Работа со списками по категориям
-const listGoalsHealth = document.querySelector(".block-health");
-const listGoalsCareer = document.querySelector(".block-career");
-const listGoalsEducation = document.querySelector(".block-education");
-const listGoalsPersonal = document.querySelector(".block-personal");
+  saveLocalStorage();
+}
 
 // Создание новой цели
 function createGoal(goal) {
@@ -126,19 +154,42 @@ function deleteGoal(goalId) {
   const indexGoal = goals.findIndex((goal) => goal.id == goalId);
   if (indexGoal != -1) {
     goals.splice(indexGoal, 1);
+    saveLocalStorage();
     renderGoals();
   }
 }
 
 // Работа с модальным окном
-closeBtn.addEventListener("click", openModalWindow);
 function openModalWindow() {
   const indexGoal = goals.findIndex((goal) => currentGoalId == goal.id);
 
   modalTitle.textContent = goals[indexGoal].name;
   modalDescr.textContent = goals[indexGoal].description;
-  modalCategory.textContent = goals[indexGoal].category;
-  modalPriority.textContent = goals[indexGoal].priority;
+  switch (goals[indexGoal].category) {
+    case "health":
+      modalCategory.textContent = "🏃‍♂️ Здоровье";
+      break;
+    case "career":
+      modalCategory.textContent = "💼 Карьера";
+      break;
+    case "education":
+      modalCategory.textContent = "🎓 Образование";
+      break;
+    case "personal":
+      modalCategory.textContent = "❤️ Личное";
+      break;
+  }
+  switch (goals[indexGoal].priority) {
+    case "high":
+      modalPriority.textContent = "⬆️ Высокий";
+      break;
+    case "medium":
+      modalPriority.textContent = "➡️ Средний";
+      break;
+    case "low":
+      modalPriority.textContent = "↘️ Низкий";
+      break;
+  }
   modalDeadline.textContent = goals[indexGoal].deadline;
 
   const delGoal = document
