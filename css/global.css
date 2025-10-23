@@ -13,6 +13,7 @@
 
   --padding-xs: 2px;
   --padding-s: 8px;
+  --padding-ss: 12px;
   --padding-m: 16px;
   --padding-l: 24px;
 }
@@ -36,6 +37,15 @@ h1 {
 p {
   font-size: var(--text-size-p);
   font-weight: 100;
+}
+select {
+  background: transparent;
+  border: 1px solid var(--color-white);
+  border-radius: 10px;
+  color: var(--color-white);
+  font-size: var(--text-size-p);
+  line-height: 30px;
+  width: 100px;
 }
 
 /* header */
