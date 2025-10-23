@@ -6,6 +6,7 @@
     <title>Goals</title>
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/main-content.css" />
+    <link rel="stylesheet" href="css/modal.css" />
   </head>
   <body>
     <header>
@@ -157,6 +158,56 @@
           />
         </div>
         <button class="add-goal">Добавить цель</button>
+      </div>
+    </section>
+
+    <section class="modal hide">
+      <button class="close-btn">
+        <svg
+          width="19"
+          height="19"
+          viewBox="0 0 19 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <rect width="19" height="19" fill="url(#pattern0_14_183)" />
+          <defs>
+            <pattern
+              id="pattern0_14_183"
+              patternContentUnits="objectBoundingBox"
+              width="1"
+              height="1"
+            >
+              <use xlink:href="#image0_14_183" transform="scale(0.01)" />
+            </pattern>
+            <image
+              id="image0_14_183"
+              width="100"
+              height="100"
+              preserveAspectRatio="none"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC3klEQVR4nO3dS24UMRSFYQ+aOVKYQNgKg8BaCOyCwDaA/YRGCllJLr6na1zIoluKWhD1o+w6t3x+qaaJXZ9aSTkVOyWllFJKKaWUUkoppZRiaRiGSwBfAHx39w/jOK5S8MZxfObuH8ucytyGYXiVIgTgCoABGB9dtznnixS0nPMFgB97cypzvErMufsb/G3cv9z93t1fpGCZ2XN3//mfOQ0A3qVoGFFR7AkMapRDMKKh2AEYlCjHYERBsSMwqFBOwWBHsRMwKFDOwWBFsTMwZkUpv4MDeDhn4GwoNgHGo+v3MAyvmw1++9A3xcB3KHdzPqfknC/KGKacE4CbZhPYPq2OS0DJdTDK9bXZJMpySIUJjK1RKmKUubxvua6z+sdSQiiUXBGjLBU1X7+b+IfgPsp9TZTKY/8128/DiBOzgGNe7AQt0FgXP1ELMMZJY56wEY+taowTN8IxNY3pBhjRWGaN4UYYwRiomvOGmDB4bowJ4+la3iATxmFtb9S65o0yYVCtrN7V/NqLw2jxSYE+GctG8R4woqB4TxjsKN4jBiuK94zBhuLC4EFxYfCguDB4UFwYPCguDB4UF8ZxWcWFQoGQYUAofBgQCh8GhMKHAaHwYUAofBgQCh8GekZhxUCPKOwY6AklCgZ6QNFrQES1eInNKr+Mx7C5QdRXSdeVvhfFjhNRX7ZeC4Xv3xHWQtnG8OKzCYUHY1f3KEwYqXcURoxuUZgxukOJgNENSiSMxaNExGi1tVRzFG1gBq4NzLanBITFWNwWf9oEE4dc35pNAsDnJWDURHH3TynoRsoUf5Wz6TdSvoy41TgFRoWtxt+mgJvxU2FMuBn/PBhnHldBiTHBcRXzYpx4oAs1xhkHunBgHHnkUQiME4484sI48FCwUBhHHArGidHBsXm3e3N6oD82b+855aYc2VCWEBZysOTK3a/LE3h56NtsNi/nHpNSSimllFJKKaWUUkqlXX8AibX2fL5rnvEAAAAASUVORK5CYII="
+            />
+          </defs>
+        </svg>
+      </button>
+      <div class="modal-content">
+        <h1 class="modal-title">Пройти курс по JS</h1>
+        <p class="modal-descr">Пройти курс и сделать 3 пет-проекта</p>
+        <div class="block-modal modal-category">
+          <p class="p-modal">Категория</p>
+          <p class="p-modal p-modal__category">💼 Карьера</p>
+        </div>
+        <div class="block-modal modal-priority">
+          <p class="p-modal">Приоритет</p>
+          <p class="p-modal p-modal__priority">⬆️ Высокий</p>
+        </div>
+        <div class="block-modal modal-deadline">
+          <p class="p-modal">Дедлайн</p>
+          <p class="p-modal p-modal__deadline">27.04.2026</p>
+        </div>
+        <button class="complete-goal">Цель выполнена</button>
+        <button class="delete-goal">Удалить цель</button>
       </div>
     </section>
 

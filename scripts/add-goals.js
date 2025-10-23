@@ -28,6 +28,7 @@ function initDef() {
   ];
 }
 let nextId = 3;
+let currentGoalId = null;
 
 // Работа с Goal Card
 const nameGoal = document.querySelector(".name-goal");
@@ -36,6 +37,15 @@ const categoryGoal = document.querySelector("#category");
 const priorityGoal = document.querySelector("#priority");
 const deadlineGoal = document.querySelector("#deadline");
 const btnAddGoal = document.querySelector(".add-goal");
+
+// Модальное окно
+const modalWindow = document.querySelector(".modal");
+const closeBtn = document.querySelector(".close-btn");
+const modalTitle = document.querySelector(".modal-title");
+const modalDescr = document.querySelector(".modal-descr");
+const modalCategory = document.querySelector(".p-modal__category");
+const modalPriority = document.querySelector(".p-modal__priority");
+const modalDeadline = document.querySelector(".p-modal__deadline");
 
 btnAddGoal.addEventListener("click", AddGoal);
 
@@ -82,6 +92,11 @@ function createGoal(goal) {
   li.classList.add("block-item");
   li.textContent = goal.name;
 
+  li.addEventListener("click", function () {
+    currentGoalId = goal.id;
+    openModalWindow();
+  });
+
   return li;
 }
 
@@ -105,6 +120,41 @@ function renderGoals() {
       listGoalsPersonal.appendChild(goalElement);
     }
   }
+}
+
+function deleteGoal(goalId) {
+  const indexGoal = goals.findIndex((goal) => goal.id == goalId);
+  if (indexGoal != -1) {
+    goals.splice(indexGoal, 1);
+    renderGoals();
+  }
+}
+
+// Работа с модальным окном
+closeBtn.addEventListener("click", openModalWindow);
+function openModalWindow() {
+  const indexGoal = goals.findIndex((goal) => currentGoalId == goal.id);
+
+  modalTitle.textContent = goals[indexGoal].name;
+  modalDescr.textContent = goals[indexGoal].description;
+  modalCategory.textContent = goals[indexGoal].category;
+  modalPriority.textContent = goals[indexGoal].priority;
+  modalDeadline.textContent = goals[indexGoal].deadline;
+
+  const delGoal = document
+    .querySelector(".delete-goal")
+    .addEventListener("click", function () {
+      deleteGoal(currentGoalId);
+      modalWindow.classList.add("hide");
+    });
+  const completeGoal = document
+    .querySelector(".complete-goal")
+    .addEventListener("click", function () {
+      deleteGoal(currentGoalId);
+      modalWindow.classList.add("hide");
+    });
+
+  modalWindow.classList.toggle("hide");
 }
 
 initDef();
