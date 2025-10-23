@@ -96,6 +96,10 @@
   gap: 20px;
 }
 
+option {
+  color: var(--color-background);
+}
+
 .add-goal {
   background: transparent;
   border: 1px solid var(--color-green);
@@ -111,4 +115,5 @@
 }
 .data {
   gap: 0;
+  color: var(--color-white);
 }
