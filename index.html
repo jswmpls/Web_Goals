@@ -90,43 +90,49 @@
 
     <section class="main-content">
       <div class="blocks">
-        <div class="block health">
+        <div class="block">
           <h1>🏃‍♂️ Здоровье</h1>
-          <ul class="block-list health">
-            <li class="block-item health">10.000 шагов в день</li>
+          <ul class="block-list block-health">
+            <li class="block-item">10.000 шагов в день</li>
           </ul>
         </div>
-        <div class="block career">
+        <div class="block">
           <h1>💼 Карьера</h1>
-          <ul class="block-list career">
-            <li class="block-item career">Получить повышение до препода</li>
-            <li class="block-item career">Найти работу во Frontend</li>
+          <ul class="block-list block-career">
+            <li class="block-item">Получить повышение до препода</li>
+            <li class="block-item">Найти работу во Frontend</li>
           </ul>
         </div>
-        <div class="block education">
+        <div class="block">
           <h1>🎓 Образование</h1>
-          <ul class="block-list education">
-            <li class="block-item education">Пройти курс по JS</li>
-            <li class="block-item education">Пройти курс по React</li>
+          <ul class="block-list block-education">
+            <li class="block-item">Пройти курс по JS</li>
+            <li class="block-item">Пройти курс по React</li>
           </ul>
         </div>
-        <div class="block personal">
+        <div class="block">
           <h1>❤️ Личное</h1>
-          <ul class="block-list personal">
-            <li class="block-item personal">
-              1 раз/неделю видеться с друзьями
-            </li>
+          <ul class="block-list block-personal">
+            <li class="block-item">1 раз/неделю видеться с друзьями</li>
           </ul>
         </div>
       </div>
 
       <div class="block form">
         <h1>✙ Goal Card</h1>
-        <input class="input" type="text" placeholder="Введите название цели" />
-        <input class="input" type="text" placeholder="Введите описание" />
+        <input
+          class="name-goal input"
+          type="text"
+          placeholder="Введите название цели"
+        />
+        <input
+          class="descr-goal input"
+          type="text"
+          placeholder="Введите описание"
+        />
         <div class="category">
           <p class="input-sm">Категория</p>
-          <select name="category" id="category">
+          <select class="category" name="category" id="category">
             <option value="health">🏃‍♂️ Здоровье</option>
             <option value="career">💼 Карьера</option>
             <option value="education">🎓 Образование</option>
@@ -135,7 +141,7 @@
         </div>
         <div class="category">
           <p class="input-sm">Приоритет</p>
-          <select name="priority" id="priority">
+          <select class="category" name="priority" id="priority">
             <option value="high">⬆️ Высокий</option>
             <option value="medium">➡️ Средний</option>
             <option value="low">↘️ Низкий</option>
@@ -143,12 +149,18 @@
         </div>
         <div class="category">
           <p class="input-sm">Дедлайн</p>
-          <input class="input-sm data" type="date" style="width: 90px" />
+          <input
+            class="input-sm data"
+            id="deadline"
+            type="date"
+            style="width: 90px"
+          />
         </div>
         <button class="add-goal">Добавить цель</button>
       </div>
     </section>
 
     <script src="scripts/nav-menu.js"></script>
+    <script src="scripts/add-goals.js"></script>
   </body>
 </html>
